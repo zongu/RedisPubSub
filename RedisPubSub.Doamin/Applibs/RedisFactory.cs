@@ -7,15 +7,31 @@ namespace RedisPubSub.Doamin.Applibs
     {
         private static ConnectionMultiplexer redisConn;
 
+        private static int _dataBase;
+
+        private static string _affixKey;
+
+        public static string AffixKey
+        {
+            get
+                => _affixKey;
+        }
+
         public static ISubscriber RedisSubscriber
         {
             get
             {
-                return redisConn == null ? null : redisConn.GetSubscriber();
+                if(redisConn == null)
+                {
+                    return null;
+                }
+
+                redisConn.GetDatabase(_dataBase);
+                return redisConn.GetSubscriber();
             }
         }
 
-        public static void Start(ConnectionMultiplexer conn)
+        public static void Start(ConnectionMultiplexer conn, string affixKey, int dataBase)
         {
             if(redisConn != null)
             {
@@ -23,6 +39,8 @@ namespace RedisPubSub.Doamin.Applibs
             }
 
             redisConn = conn;
+            _affixKey = affixKey;
+            _dataBase = dataBase;
         }
 
         public static void Stop()

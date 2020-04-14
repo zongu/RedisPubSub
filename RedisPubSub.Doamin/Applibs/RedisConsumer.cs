@@ -24,7 +24,7 @@ namespace RedisPubSub.Doamin.Applibs
             this.topics.ToList().ForEach(t =>
             {
                 var sub = RedisFactory.RedisSubscriber;
-                sub.Subscribe(t, (topic, message) =>
+                sub.Subscribe($"{RedisFactory.AffixKey}:{t}", (topic, message) =>
                 {
                     var @event = JsonConvert.DeserializeObject<RedisEventStream>(message.ToString());
                     this.dispatcher.DispatchMessage(@event);

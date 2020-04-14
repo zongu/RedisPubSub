@@ -87,9 +87,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applibs\PubSubDispatcher.cs" />
     <Compile Include="Applibs\RedisConsumer.cs" />
     <Compile Include="Applibs\RedisFactory.cs" />
     <Compile Include="Applibs\RedisProducer.cs" />
+    <Compile Include="Applibs\TimeStampHelper.cs" />
     <Compile Include="Model\EventStream.cs" />
     <Compile Include="Model\IPubSubDispatcher.cs" />
     <Compile Include="Model\IPubSubHandler.cs" />

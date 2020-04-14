@@ -12,6 +12,6 @@ namespace RedisPubSub.Doamin.Model
         /// 處裡事件內容
         /// </summary>
         /// <param name="stream">事件流</param>
-        bool Handle(TEventStream stream);
+        void Handle(TEventStream stream);
     }
 }

@@ -1,7 +1,9 @@
 ﻿
 namespace RedisPubSub.Doamin.Applibs
 {
+    using System;
     using Newtonsoft.Json;
+    using RedisPubSub.Doamin.Model;
 
     public static class RedisProducer
     {
@@ -15,7 +17,12 @@ namespace RedisPubSub.Doamin.Applibs
         public static void Publish<T>(string topicName, T data, string rmqExpiration = "86400000")
         {
             var sub = RedisFactory.RedisSubscriber;
-            sub.Publish(topicName, JsonConvert.SerializeObject(data));
+            var content = new RedisEventStream(
+                typeof(T).Name,
+                JsonConvert.SerializeObject(data),
+                TimeStampHelper.ToUtcTimeStamp(DateTime.Now));
+
+            sub.Publish($"{RedisFactory.AffixKey}:{topicName}", JsonConvert.SerializeObject(content));
         }
     }
 }

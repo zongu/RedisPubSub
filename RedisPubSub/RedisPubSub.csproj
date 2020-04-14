@@ -89,12 +89,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applibs\AutofacConfig.cs" />
+    <Compile Include="Applibs\ConfigHelper.cs" />
+    <Compile Include="Applibs\NoSqlService.cs" />
+    <Compile Include="Handler\AEventHandler.cs" />
+    <Compile Include="Handler\BEventHandler.cs" />
+    <Compile Include="Handler\CEventHandler.cs" />
+    <Compile Include="Model\AEvent.cs" />
+    <Compile Include="Model\BEvent.cs" />
+    <Compile Include="Model\CEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RedisPubSub.Doamin\RedisPubSub.Doamin.csproj">
+      <Project>{AF63298D-C6EC-4C5C-A173-818740E8259B}</Project>
+      <Name>RedisPubSub.Doamin</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
