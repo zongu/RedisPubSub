@@ -13,10 +13,13 @@ namespace RedisPubSub
         {
             try
             {
+                //// 啟動redis發布訂閱中樞
                 RedisFactory.Start(NoSqlService.RedisConnections, NoSqlService.RedisAffixKey, NoSqlService.RedisDataBase);
+                ////訂閱關注Topics
                 var consumer = new RedisConsumer(ConfigHelper.SubscribTopics, new PubSubDispatcher<RedisEventStream>(AutofacConfig.Container));
                 consumer.Register();
 
+                //// 發布事件
                 RedisProducer.Publish("A", new AEvent() { Message = $"{nameof(AEvent)}:{DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss")}" });
                 RedisProducer.Publish("B", new AEvent() { Message = $"{nameof(BEvent)}:{DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss")}" });
                 RedisProducer.Publish("C", new AEvent() { Message = $"{nameof(CEvent)}:{DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss")}" });

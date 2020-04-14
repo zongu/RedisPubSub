@@ -20,6 +20,10 @@ namespace RedisPubSub.Doamin.Applibs
             this.container = container;
         }
 
+        /// <summary>
+        /// 解析訂閱訊息
+        /// </summary>
+        /// <param name="stream"></param>
         public void DispatchMessage(TEventStream stream)
         {
             try

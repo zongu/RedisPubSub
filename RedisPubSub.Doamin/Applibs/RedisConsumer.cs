@@ -6,6 +6,9 @@ namespace RedisPubSub.Doamin.Applibs
     using Newtonsoft.Json;
     using RedisPubSub.Doamin.Model;
 
+    /// <summary>
+    /// 消費者
+    /// </summary>
     public class RedisConsumer
     {
 
@@ -19,6 +22,9 @@ namespace RedisPubSub.Doamin.Applibs
             this.dispatcher = dispatcher;
         }
 
+        /// <summary>
+        /// redis訂閱設定
+        /// </summary>
         public void Register()
         {
             this.topics.ToList().ForEach(t =>

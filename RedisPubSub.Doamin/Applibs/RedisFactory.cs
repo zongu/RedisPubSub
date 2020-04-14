@@ -3,6 +3,9 @@ namespace RedisPubSub.Doamin.Applibs
 {
     using StackExchange.Redis;
 
+    /// <summary>
+    /// Redis發布訂閱中樞
+    /// </summary>
     public static class RedisFactory
     {
         private static ConnectionMultiplexer redisConn;
